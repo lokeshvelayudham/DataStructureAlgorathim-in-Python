@@ -1,3 +1,6 @@
+#code is contributed by Lokesh Poluru Velayudham
+
+
 from sys import stdin
 
 def rowWiseSum(mat, nRows, mCols):
@@ -6,7 +9,7 @@ def rowWiseSum(mat, nRows, mCols):
         s = 0
         for ele in row:
             s = s + ele
-            sum.append(s)
+        sum.append(s)
     return sum
 
 
