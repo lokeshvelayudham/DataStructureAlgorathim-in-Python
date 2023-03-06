@@ -1,13 +1,13 @@
-def sumArray(arr):
-    sum = 0
-    # Please add your code here
-    for i in range(len(arr)):
-        sum+=arr[i]
-    return sum
+def sumArray(arr,n):
+    if n <= 0: 
+        return 0
+    else:
+        return arr[n-1] + sumArray(arr,n-1)
 
 # Main
 from sys import setrecursionlimit
 setrecursionlimit(11000)
 n=int(input())
 arr=list(int(i) for i in input().strip().split(' '))
-print(sumArray(arr))
+n = len(arr)
+print(sumArray(arr,n))
