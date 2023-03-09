@@ -1,13 +1,13 @@
-def checkAB(s):
-    if len(s) == 0:
-        return True
-    if (s[0] == 'a'):
-        if ( len(s[1:]) > 1 and s[1:3] == 'bb'):
-            return checkAB(s[3:])
-        else:
-            return checkAB(s[1:])
-s = input()
-if checkAB(s):
-    print("true")
-else:
-    print("false")
+class Student:
+
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+    def print_student_details(self):
+        print(self.name, end= " ")
+        print(self.age)
+
+
+s = Student("lokesh",25)
+s.print_student_details()
