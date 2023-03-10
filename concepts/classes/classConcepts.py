@@ -16,7 +16,7 @@ class student:
         print(self.name,end = " ")
         print(self.__age)
 # instance Method 
-#private Method
+#private instance Method
     def __details(self):
         print("the age of "+ self.name + " is ", self.age)
 

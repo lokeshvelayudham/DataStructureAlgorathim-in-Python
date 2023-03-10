@@ -1,13 +1,20 @@
-class Student:
-
-    def __init__(self,name,age):
-        self.name = name
-        self.age = age
-
-    def print_student_details(self):
-        print(self.name, end= " ")
-        print(self.age)
-
-
-s = Student("lokesh",25)
-s.print_student_details()
+def longestCommonPrefix(strs: list[str]) -> str:
+    # Longest common prefix string
+    lcp = ""
+    # Base condition
+    if strs is None or len(strs) == 0:
+        return lcp
+    # Find the minimum length string from the array
+    minimumLength = len(strs[0])
+    for i in range(1, len(strs)):
+        minimumLength = min(minimumLength, len(strs[i]))
+    # Loop until the minimum length
+    for i in range(0, minimumLength):
+        # Get the current character from the first string
+        current = strs[0][i]
+        # Check if this character is found in all other strings or not
+        for j in range(0, len(strs)):
+            if strs[j][i] != current:
+                return lcp
+        lcp += current
+    return lcp
