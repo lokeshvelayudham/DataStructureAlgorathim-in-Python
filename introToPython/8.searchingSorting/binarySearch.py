@@ -16,3 +16,7 @@ def binarySearch(arr : List[int], n : int, x : int) :
     return -1
     #Your code goes here
     pass
+n = int(input())
+arr = list(map(int,input().strip(",").split(",")))
+x = int(input())
+print(binarySearch(arr,n,x))

@@ -1,3 +1,6 @@
+#code is contributed by Lokesh Poluru Velayudham
+
+
 from sys import stdin
 
 
@@ -15,11 +18,11 @@ def selectionSort(arr, n):
 
 
 def takeInput():
-    n = int(stdin.readline().strip())
+    n = int(stdin.readline().strip()) #length of array 
     if n == 0:
         return list(), 0
 
-    arr = list(map(int, stdin.readline().strip().split(" ")))
+    arr = list(map(int, stdin.readline().strip().split(" "))) #arrays
     return arr, n
 
 
@@ -31,11 +34,11 @@ def printList(arr, n):
 
 
 #main
-t = int(stdin.readline().strip())
+t = int(stdin.readline().strip()) #testcases
 
 while t > 0:
 
-    arr, n = takeInput()
+    arr, n = takeInput() 
     selectionSort(arr, n)
     printList(arr, n)
 

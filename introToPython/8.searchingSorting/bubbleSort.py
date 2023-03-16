@@ -1,13 +1,16 @@
+#code is contributed by Lokesh Poluru Velayudham
+
+
 from sys import stdin
 
 
-def bubbleSort(arr, n):
-    for i in range(n):
-        for j in range(n):
-            if arr[i] < arr[j]:
-                arr[i], arr[j] = arr[j], arr[i]
-    return arr
 
+def bubbleSort(arr, n):
+    for i in range(n-1):
+        for j in range(n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j],arr[j+1] = arr[j+1],arr[j]
+    return arr
 
 #Taking Input Using Fast I/O
 def takeInput():
