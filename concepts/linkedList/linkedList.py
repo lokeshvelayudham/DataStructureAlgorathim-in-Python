@@ -4,31 +4,39 @@ class node:
         self.data = data
         self.next = None
 
+def printLL(head):
+    
+    while head is not None:
+        print(str(head.data)+"->",end="")
+        head = head.next
+    print("None")
+    return 
+
+
+
 def takeInput():
     inputList = [int(ele) for ele in input().split()]
     head = None
+    tail = None
     for currData in inputList:
         if currData == -1:
             break
         newNode = node(currData)
         if head is None:
             head = newNode
+            tail = newNode
         else:
-            curr = head
-            while curr.next is not None:
-                curr = curr.next
-            curr.next = newNode
+            # Approach O(n)
+            tail.next = newNode
+            tail = newNode
+            # approcaj O(n2)
+            # curr = head    
+            # while curr.next is not None:
+            #     curr = curr.next
+            # curr.next = newNode
+    return head
         
 
 
-
-a = node(13)
-b = node(15)
-a.next = b
-print(a.data)
-print(b.data)
-print(a.next.data)
-print(a.next.next)
-print(a)
-print(b)
-print(a.next)
+head = takeInput()
+printLL(head)
