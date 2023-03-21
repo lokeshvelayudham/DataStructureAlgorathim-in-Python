@@ -1,70 +1,78 @@
-#code is contributed by Lokesh Poluru Velayudham
-
-
 from sys import stdin
-import math
-
-def arrayEquilibriumIndex(arr, n) :
-    # O(n) time approach
-    totalSum = sum(arr)
-    leftSum = 0
-    for i in range(n):
-        rightSum = totalSum - leftSum - arr[i]
-        if (rightSum == leftSum):
-            return i
-        leftSum += arr[i]
-    return -1
- 
+# #code is contributed by Lokesh Poluru Velayudham
+# node creation class
+class node():
+    def __init__(self,data):
+        self.data = data
+        self.next = None
 
 
-# approcah 2 O(n^2)
-
-    # for i in range(n):
-    #     leftSum = 0
-    #     rightSum = 0
-
-    #     # leftSum
-    #     for j in range(i):
-    #         leftSum += arr[j]
-        
-    #     # rightSum
-    #     for j in range(i+1,n):
-    #         rightSum += arr[j]
-        
-    #     # check equilibrium
-    #     if leftSum == rightSum:
-    #         return i
-    
-    # return -1
-  
-    
+# take input function 
+def takeInput():
+    head = None
+    tail = None
+    datas = list(map(int,stdin.readline().rstrip().split(" ")))
+    for currData in datas:
+        if currData == -1:
+            break
+        newNode = node(currData)
+        if head is None:
+            head = newNode
+            tail = newNode
+        else:
+            tail.next = newNode
+            tail = newNode
+    return head
 
 
+# print Linked list
+def printLL(head):
+    while head is not None:
+        print(str(head.data)+"->",end=" ")
+        head = head.next
+    print(None)
 
 
+# length of the Linked list 
+def lengthLL(head):
+    count = 0
+    while head is not None:
+        count+=1
+        head = head.next
+    return count
 
-#Taking input using fast I/O method
-def takeInput() :
-    n = int(stdin.readline().strip())
-    if n == 0 :
-        return list(), 0
-
-    arr = list(map(int, stdin.readline().strip().split(" ")))
-    return arr, n
-
-
-def printList(arr, n) : 
-    for i in range(n) :
-        print(arr[i], end = " ")
-    print()
+# length of the linked list recurcive
+def lengthLLR(head):
+    if head is None:
+        return 0
+    return 1 + lengthLLR(head.next)
 
 
-#main
-t = int(stdin.readline().strip())
+# print I th element in the linked list
+def printIth(head,i):
+    count = 0
+    while head is not None:
+        if count == i:
+            print(head.data)
+        head = head.next
+        count +=1
 
-while t > 0 :
-    
-    arr, n = takeInput()
-    print(arrayEquilibriumIndex(arr, n))
+# Main function
+t = int(stdin.readline().rstrip())
+while t > 0:
+    print("enter the datas")
+    head = takeInput()
+    print("the linked list is ")
+    printLL(head)
+    print("the length of the linked list is: ")
+    l = lengthLL(head)
+    print(l)
+    print("the length of the linked list by recrusion:")
+    lr = lengthLLR(head)
+    print(lr)
+    print("enter the I th element to view or modify")
+    i = int(stdin.readline().rstrip())
+    print("the i th element in the linked list")
+    printIth(head,i)
 
-    t-= 1
+    t-=1
