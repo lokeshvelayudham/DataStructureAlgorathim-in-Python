@@ -1,22 +1,65 @@
 
-from sys import stdin
+from sys import stdin, setrecursionlimit
+setrecursionlimit(10 ** 6)
+
+#Following is the Node class already written for the Linked List
+class Node :
+    def __init__(self, data) :
+        self.data = data
+        self.next = None
 
 
-def pairsum(arr, n, x):
-    # count = 0
-    for i in range(n):
-        for j in range(i+1, n):
-            if arr[i]+arr[j] == x:
-                print (arr[i],arr[j])
-    # return
 
-    #Your code goes here
 
-n,x = input().split(" ")
-n = int(n)
-x = int(x)
-# print(x)
-arr = list(map(int, stdin.readline().strip().split(" ")))
-# print(arr)
-# print(len(arr))
-print(pairsum(arr,n,x))
+def printReverse(head) :
+    if head is None:
+        return None
+    
+    return printReverse(head.next), print(head.data,end=" ")
+
+#Taking Input Using Fast I/O
+def takeInput() :
+    head = None
+    tail = None
+
+    datas = list(map(int, stdin.readline().rstrip().split(" ")))
+
+    i = 0
+    while (i < len(datas)) and (datas[i] != -1) :
+        data = datas[i]
+        newNode = Node(data)
+
+        if head is None :
+            head = newNode
+            tail = newNode
+
+        else :
+            tail.next = newNode
+            tail = newNode
+
+        i += 1
+
+    return head
+
+
+#to print the linked list 
+def printLinkedList(head) :
+
+    while head is not None :
+        print(head.data, end = " ")
+        head = head.next
+
+    print()
+
+
+#main
+t = int(stdin.readline().rstrip())
+
+while t > 0 :
+
+    head = takeInput()
+    printReverse(head)
+   
+    print()
+
+    t -= 1
