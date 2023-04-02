@@ -1,3 +1,5 @@
+#code is contributed by Lokesh Poluru Velayudham
+
 from sys import stdin, setrecursionlimit
 import queue
 
@@ -12,21 +14,15 @@ class BinaryTreeNode:
         self.right = None
 
 
-def preOrder(root):
-    if root is None:
-        return 
-    
-    print(root.data,end=" ")
-    preOrder(root.left)
-    preOrder(root.right)
-    # if (root.left != None):
-    #     print(root.left.data,end=" ")
+# find largerst
 
-    # if(root.right != None):
-    #     print(root.right.data,end=" ")
-    
-    # preOrder(root.left)
-    # preOrder(root.right)
+def largestData(root):
+    if root is None :
+        return -1
+    leftLarge = largestData(root.left)
+    rightLarge = largestData(root.right)
+
+    return max(root.data,leftLarge,rightLarge)
 
 
 #Taking level-order input using fast I/O method
@@ -65,4 +61,4 @@ def takeInput():
 
 # Main
 root = takeInput()
-preOrder(root)
+print(largestData(root))

@@ -3,8 +3,6 @@ import queue
 
 setrecursionlimit(10 ** 6)
 
-
-# Following the structure used for Binary Tree
 class BinaryTreeNode:
     def __init__(self, data):
         self.data = data
@@ -12,21 +10,24 @@ class BinaryTreeNode:
         self.right = None
 
 
-def preOrder(root):
-    if root is None:
-        return 
-    
-    print(root.data,end=" ")
-    preOrder(root.left)
-    preOrder(root.right)
-    # if (root.left != None):
-    #     print(root.left.data,end=" ")
 
-    # if(root.right != None):
-    #     print(root.right.data,end=" ")
-    
-    # preOrder(root.left)
-    # preOrder(root.right)
+def countNodesGreaterThanX(root, x) :
+	if root is None :
+		return 0
+
+	count = 0
+
+	if root.data > x :
+		count = 1
+
+	if root.left is not None :
+		count += countNodesGreaterThanX(root.left, x)
+
+	if root.right is not None :
+		count += countNodesGreaterThanX(root.right, x)
+
+	return count		
+
 
 
 #Taking level-order input using fast I/O method
@@ -65,4 +66,7 @@ def takeInput():
 
 # Main
 root = takeInput()
-preOrder(root)
+x = int(stdin.readline().strip())
+
+count = countNodesGreaterThanX(root, x)
+print(count)

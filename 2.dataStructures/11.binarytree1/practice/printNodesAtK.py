@@ -4,7 +4,7 @@ import queue
 setrecursionlimit(10 ** 6)
 
 
-# Following the structure used for Binary Tree
+#Following is the structure used to represent the Binary Tree Node
 class BinaryTreeNode:
     def __init__(self, data):
         self.data = data
@@ -12,30 +12,30 @@ class BinaryTreeNode:
         self.right = None
 
 
-def preOrder(root):
-    if root is None:
-        return 
-    
-    print(root.data,end=" ")
-    preOrder(root.left)
-    preOrder(root.right)
-    # if (root.left != None):
-    #     print(root.left.data,end=" ")
 
-    # if(root.right != None):
-    #     print(root.right.data,end=" ")
+def printNodesAtK(root,k):
+    if root is None:
+        return None
+    if k == 0 :
+        print(root.data)
+        return 
+    printNodesAtK(root.left, k-1)
+    printNodesAtK(root.right, k-1)
     
-    # preOrder(root.left)
-    # preOrder(root.right)
+    pass
+	
 
 
 #Taking level-order input using fast I/O method
 def takeInput():
     levelOrder = list(map(int, stdin.readline().strip().split(" ")))
     start = 0
-
+    
     length = len(levelOrder)
 
+    if length == 1 :
+        return None
+    
     root = BinaryTreeNode(levelOrder[start])
     start += 1
 
@@ -65,4 +65,6 @@ def takeInput():
 
 # Main
 root = takeInput()
-preOrder(root)
+k = int(input())
+printNodesAtK(root,k)
+

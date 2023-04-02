@@ -1,33 +1,21 @@
+#code is contributed by Lokesh Poluru Velayudham
+
+
 from sys import stdin, setrecursionlimit
 import queue
-
 setrecursionlimit(10 ** 6)
-
-
-# Following the structure used for Binary Tree
-class BinaryTreeNode:
-    def __init__(self, data):
+# create a class for binary nodes
+class binaryNode :
+    def __init__(self, data) :
         self.data = data
         self.left = None
         self.right = None
-
-
-def preOrder(root):
+    
+# sum of the nodes
+def getSum(root):
     if root is None:
-        return 
-    
-    print(root.data,end=" ")
-    preOrder(root.left)
-    preOrder(root.right)
-    # if (root.left != None):
-    #     print(root.left.data,end=" ")
-
-    # if(root.right != None):
-    #     print(root.right.data,end=" ")
-    
-    # preOrder(root.left)
-    # preOrder(root.right)
-
+        return 0
+    return root.data + getSum(root.left) + getSum(root.right)
 
 #Taking level-order input using fast I/O method
 def takeInput():
@@ -36,7 +24,7 @@ def takeInput():
 
     length = len(levelOrder)
 
-    root = BinaryTreeNode(levelOrder[start])
+    root = binaryNode(levelOrder[start])
     start += 1
 
     q = queue.Queue()
@@ -49,7 +37,7 @@ def takeInput():
         start += 1
 
         if leftChild != -1:
-            leftNode = BinaryTreeNode(leftChild)
+            leftNode = binaryNode(leftChild)
             currentNode.left =leftNode
             q.put(leftNode)
 
@@ -57,7 +45,7 @@ def takeInput():
         start += 1
 
         if rightChild != -1:
-            rightNode = BinaryTreeNode(rightChild)
+            rightNode = binaryNode(rightChild)
             currentNode.right =rightNode
             q.put(rightNode)
 
@@ -65,4 +53,4 @@ def takeInput():
 
 # Main
 root = takeInput()
-preOrder(root)
+print(getSum(root))
