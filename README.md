@@ -4,7 +4,7 @@
 
 ##  A Detailed notes and code for Data Structures and Alogrithm in python 
 
-- ###[Part 1 Intro to Pyhon](/1.introToPython)
+- [Part 1 Intro to Pyhon](/1.introToPython)
   - [1.intro](/1.introToPython/1.intro)
   - [2.condotionLoops](/1.introToPython/2.conditionsLoops)
   - [3.patterns1](/1.introToPython/3.patterns1)
@@ -19,5 +19,6 @@
   - [Test 2](/1.introToPython/test)   
 
 
-- ###Part 2 DSA in Python
-- 
+- [Part 2 DSA in Python](/2.dataStructures/)
+  - 
+  - 
