@@ -1,3 +1,6 @@
+#code is contributed by Lokesh Poluru Velayudham
+
+
 from sys import stdin, setrecursionlimit
 import queue
 
@@ -15,34 +18,19 @@ class BinaryTreeNode:
 
 
 def mirrorBinaryTree(root) :
-    # Your code goes here
+    if root is None:
+        return None
+    if root.left is None and root.right is None:
+        return None
+    
+    mirrorBinaryTree(root.left)
+    mirrorBinaryTree(root.right)
 
+    temp = root.left
+    root.left = root.right
+    root.right = temp
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return root
 
 
 
