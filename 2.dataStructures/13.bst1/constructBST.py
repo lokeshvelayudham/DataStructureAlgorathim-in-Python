@@ -17,6 +17,8 @@ def constructBST(lst):
     
 
 def preOrder(root):
+    # Given a binary tree, print the preorder traversal of given tree. Pre-order
+    # traversal is: Root LeftChild RightChild
     if root==None:
         return
     print(root.data, end=' ')
