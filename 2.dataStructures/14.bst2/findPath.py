@@ -1,3 +1,6 @@
+#code is contributed by Lokesh Poluru Velayudham
+
+
 import queue
 class BinaryTreeNode:
     def __init__(self, data):
@@ -5,39 +8,21 @@ class BinaryTreeNode:
         self.left = None
         self.right = None
 
-def minTree(root):
-    if root == None:
-        return 100000
-    leftMin = minTree(root.left)
-    rightMin = minTree(root.right)
-    return min(leftMin, rightMin, root.data)
-
-def maxTree(root):
-    if root == None:
-        return -100000
-    leftMax = maxTree(root.left)
-    rightMax = maxTree(root.right)
-    return min(leftMax, rightMax, root.data)
-
-def isBST(root):
+def findPathBST(root,data):
     if root is None:
-        return True
-    leftMax = maxTree(root.left)
-    rightMin = minTree(root.right)
-    if root.data > rightMin or root.data <= leftMax:
-        return False
-    isLeftBST = isBST(root.left)
-    isRightBST = isBST(root.right)
-    return isLeftBST and isRightBST
-
-def preOrder(root):
-    # Given a binary tree, print the preorder traversal of given tree. Pre-order
-    # traversal is: Root LeftChild RightChild
-    if root==None:
-        return
-    print(root.data, end=' ')
-    preOrder(root.left)
-    preOrder(root.right)
+        return None
+    if root.data ==  data:
+        l = list()
+        l.append(root.data)
+        return l
+    leftOutput = findPathBST(root.left,data)
+    if leftOutput != None:
+        leftOutput.append(root.data)
+        return leftOutput
+    rightOutput = findPathBST(root.right,data)
+    if rightOutput != None:
+        rightOutput.append(root.data)
+        return rightOutput
 
 def buildLevelTree(levelorder):
     index = 0
@@ -63,9 +48,12 @@ def buildLevelTree(levelorder):
             currentNode.right =rightNode
             q.put(rightNode)
     return root
+
 # Main
 levelOrder = [int(i) for i in input().strip().split()]
 root = buildLevelTree(levelOrder)
-preOrder(root)
-print(isBST(root))
-
+data = int(input())
+path = findPathBST(root,data)
+if path is not None:
+    for ele in path:
+        print(ele,end=' ')

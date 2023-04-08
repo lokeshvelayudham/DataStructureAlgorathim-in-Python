@@ -1,3 +1,5 @@
+## Read input as specified in the question.
+## Print output as specified in the question.
 import queue
 class BinaryTreeNode:
     def __init__(self, data):
@@ -5,39 +7,23 @@ class BinaryTreeNode:
         self.left = None
         self.right = None
 
-def minTree(root):
-    if root == None:
-        return 100000
-    leftMin = minTree(root.left)
-    rightMin = minTree(root.right)
-    return min(leftMin, rightMin, root.data)
-
-def maxTree(root):
-    if root == None:
-        return -100000
-    leftMax = maxTree(root.left)
-    rightMax = maxTree(root.right)
-    return min(leftMax, rightMax, root.data)
-
-def isBST(root):
+def longestPath(root):
     if root is None:
-        return True
-    leftMax = maxTree(root.left)
-    rightMin = minTree(root.right)
-    if root.data > rightMin or root.data <= leftMax:
-        return False
-    isLeftBST = isBST(root.left)
-    isRightBST = isBST(root.right)
-    return isLeftBST and isRightBST
-
-def preOrder(root):
-    # Given a binary tree, print the preorder traversal of given tree. Pre-order
-    # traversal is: Root LeftChild RightChild
-    if root==None:
-        return
-    print(root.data, end=' ')
-    preOrder(root.left)
-    preOrder(root.right)
+        return []
+    leftLong = longestPath(root.left)
+    rightLong = longestPath(root.right)
+    
+    if len(leftLong) > len(rightLong):
+        leftLong.append(root.data)
+        return leftLong
+        
+    else:
+        rightLong.append(root.data)
+        return rightLong
+    
+    # if len(leftLong) > len(rightLong):
+    #     return leftLong
+    # return rightLong
 
 def buildLevelTree(levelorder):
     index = 0
@@ -63,9 +49,10 @@ def buildLevelTree(levelorder):
             currentNode.right =rightNode
             q.put(rightNode)
     return root
+
 # Main
 levelOrder = [int(i) for i in input().strip().split()]
 root = buildLevelTree(levelOrder)
-preOrder(root)
-print(isBST(root))
-
+path = longestPath(root)
+for ele in path:
+    print(ele)
