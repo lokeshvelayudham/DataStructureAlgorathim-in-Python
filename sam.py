@@ -1,36 +1,21 @@
-def generatePermutationsHelper(str, l, r, ans):
+def permutation(str):
+    if len(str) == 0:
+        return 
+    
+    output = []
+    for i in range(len(str)):
+        start = str[i]
+        
+                
+        remaining = str[:i] + str[i+1:]        
+        output.append(start + remaining )
+        
+        # remaining = str[i+1:] + str[:i]
+        # output.append(start+remaining)
+    return output
 
-    # base case
-    if (l == r):
-        ans.append(str)
-        return
-
-    for i in range(l, r + 1):
-        # Swapping the characters at position i and l
-        str = list(str)
-        str[l], str[i] = str[i], str[l]
-        str = "".join(str)
-
-        generatePermutationsHelper(str, l + 1, r, ans)
-
-        # backtrack
-        str = list(str)
-        str[l], str[i] = str[i], str[l]
-        str = "".join(str)
-
-
-def generatePermutations(str):
-
-    # stores the permutations of the string
-    ans = []
-
-    l = 0
-    r = len(str) - 1
-
-    # call the recursive function
-    generatePermutationsHelper(str, l, r, ans)
-
-    # lexicographically increasing order
-    ans.sort()
-
-    return ans
+string = input()
+ans = permutation(string)
+# print(ans)
+for s in ans:
+    print(s)

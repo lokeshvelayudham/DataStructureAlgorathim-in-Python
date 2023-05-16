@@ -61,6 +61,6 @@ class PriorityQueue :
         element = self.pq[0]
         self.pq[0] = self.pq[self.getSize()-1]
         self.pq.pop()
-        self.__percolateDown()
+        self.__precolateDown()
         return element.ele
 
