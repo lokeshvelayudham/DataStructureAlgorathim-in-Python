@@ -1,59 +1,34 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.is_word = False
+n = int(input())  # 5
+fH = (n+1)//2  # 3
+sH = n//2  # 2
+#firstHalf
+i = 1
+while i <= fH:
+    #space
+    space = 1
+    while space <= fH-i:
+        print(' ', end="")
+        space = space+1
+    #star
+    star = 1
+    while star <= (2*i)-1:
+        print("*", end="")
+        star = star+1
+    print()
+    i = i+1
 
-class Trie:
-    def __init__(self):
-        self.root = TrieNode()
-
-    def insert(self, word):
-        node = self.root
-        for char in word:
-            if char not in node.children:
-                node.children[char] = TrieNode()
-            node = node.children[char]
-        node.is_word = True
-
-    def search(self, prefix):
-        node = self.root
-        for char in prefix:
-            if char not in node.children:
-                return None
-            node = node.children[char]
-        return node
-
-    def get_auto_completions(self, prefix):
-        prefix_node = self.search(prefix)
-        if prefix_node:
-            suggestions = []
-            self.dfs(prefix_node, prefix, suggestions)
-            return suggestions
-        else:
-            return []
-
-    def dfs(self, node, prefix, suggestions):
-        if node.is_word:
-            suggestions.append(prefix)
-        for char, child in node.children.items():
-            self.dfs(child, prefix + char, suggestions)
-
-
-# Read the input
-N = int(input())
-dictionary = Trie()
-for _ in range(N):
-    word = input()
-    dictionary.insert(word)
-
-Q = int(input())
-for _ in range(Q):
-    query = input()
-    suggestions = dictionary.get_auto_completions(query)
-    if suggestions:
-        suggestions.sort()
-        for word in suggestions:
-            print(word)
-    else:
-        dictionary.insert(query)
-        print("No suggestions")
+#secondHalf
+i = sH
+while i >= 1:
+    #space
+    space = 1
+    while space <= (sH-i+1):
+        print(' ', end="")
+        space = space+1
+    #star
+    star = 1
+    while star <= (2*i)-1:
+        print("*", end="")
+        star += 1
+    print()
+    i -= 1
