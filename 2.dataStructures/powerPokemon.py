@@ -1,29 +1,23 @@
-import math
+MOD = int(1e9) + 7
 
-def count_power_pokemon_couples(power):
-    count = 0
-    power_counts = {}
+def count_bit_strings(n, k):
+    # Initialize the dp array
+    dp = [[0] * (k+2) for _ in range(n+1)]
+    dp[1][0] = 1
+    dp[1][1] = 1
 
-    for p in power:
-        if p in power_counts:
-            power_counts[p] += 1
-        else:
-            power_counts[p] = 1
+    # Compute the dp array
+    for i in range(2, n+1):
+        for j in range(k+1):
+            dp[i][j] = (dp[i-1][j] + dp[i-1][j-1] + dp[i-1][j+1]) 
 
-    for p in power:
-        for i in range(1, 23):
-            q = int(math.pow(2, i) - p)
-            if q in power_counts and power_counts[q] > 0:
-                power_counts[q] -= 1
-                count += 1
-                break
+    return dp[n][k] 
 
-    return count % (10**9 + 7)
+# Read the input
+T = int(input())
 
-
-N = int(input())
-power = list(map(int, input().split()))
-
-
-result = count_power_pokemon_couples(power)
-print(result)
+# Process each test case
+for _ in range(T):
+    n, k = map(int, input().split())
+    result = count_bit_strings(n, k)
+    print(result)
