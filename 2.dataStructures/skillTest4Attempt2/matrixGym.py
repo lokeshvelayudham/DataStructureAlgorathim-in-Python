@@ -57,3 +57,4 @@ result = find_path(grid, calories)
 
 # Print the result
 print(*result)
+

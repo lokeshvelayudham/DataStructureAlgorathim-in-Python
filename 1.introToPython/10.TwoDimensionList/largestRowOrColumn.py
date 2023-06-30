@@ -9,49 +9,43 @@
 
 #code is contributed by Lokesh Poluru Velayudham
 
-
 from sys import stdin
+MIN_VALUE = -2147483648
 
 def findLargest(arr, nRows, mCols):
-    min_value_r = -2147483648
-    min_value_c = -2147483648
-    # row sum 
+    isRow = True
+    largestSum = MIN_VALUE
+    num = 0
+
     for i in range(nRows):
-        sum_row = 0
-        # row_sums = 0
+        rowSum = 0
+
         for j in range(mCols):
-            sum_row+=arr[i][j]
-    # print(sum_row)
+            rowSum += arr[i][j]
 
-
-        if sum_row > min_value_r:
-            min_value_r = sum_row
-            max_row_index = i
-    # print(min_value_r)
-
-
-# colums sums
-
-    for j in range(mCols):
-        sum_cols = 0
-        # cols_sums = 0
-        for i in range(nRows):
-            sum_cols += arr[i][j]
-        # print(sum_cols)
-            
-        if sum_cols > min_value_c:
-            min_value_c = sum_cols
-            max_cols_index = j
-    # print(min_value_c)
-
-    if min_value_r > min_value_c :
-        print("row",max_row_index,min_value_r)
-    else:
-        print("column",max_cols_index,min_value_c)
+        if rowSum > largestSum:
+            largestSum = rowSum
+            num = i
         
+    for j in range(mCols):
+        colSum = 0
+
+        for i in range(nRows):
+            colSum += arr[i][j]
+        
+        if colSum > largestSum:
+            largestSum = colSum
+            num = j
+            isRow = False
 
 
-#Taking Input Using Fast I/O
+    if isRow:
+        print("row" + str(num)+" "+str(largestSum))
+    else:
+        print("column" + str(num) +" "+ str(largestSum))
+    
+
+
 def take2DInput() :
     li = stdin.readline().rstrip().split(" ")
     nRows = int(li[0])
@@ -73,8 +67,3 @@ while t > 0 :
     findLargest(mat, nRows, mCols)
 
     t -= 1
-
-
-
-
-
